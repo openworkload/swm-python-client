@@ -14,3 +14,14 @@ exclude = '''
 [tool.isort]
 line_length = 120
 profile = "black"
+
+[tool.mypy]
+python_version = 3.9
+strict = true
+follow_imports = "silent"
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+allow_untyped_defs = true
+allow_incomplete_defs = true
+allow_untyped_calls = true
