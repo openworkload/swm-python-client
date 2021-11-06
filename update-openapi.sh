@@ -40,7 +40,4 @@ else
   URL_ARG="--url https://raw.githubusercontent.com/skyworkflows/swm-core/${GIT_BRANCH}/priv/openapi.yaml"
 fi
 
-pushd . > /dev/null
-cd ${SCRIPT_DIR}/swmclient
-$HOME/.local/bin/openapi-python-client update ${URL_ARG} --meta=none --config $CONFIG --fail-on-warning
-popd > /dev/null
+$HOME/.local/bin/openapi-python-client update ${URL_ARG} --config $CONFIG --fail-on-warning
