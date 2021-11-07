@@ -9,7 +9,7 @@ generate:
 	./update-openapi.sh
 
 format:
-	autoflake -i -r --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports swmclient
+	autoflake -i -r --ignore-init-module-imports swmclient
 	black swmclient
 	isort swmclient
 
