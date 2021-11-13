@@ -9,9 +9,9 @@ generate:
 	./update-openapi.sh
 
 format:
-	autoflake -i -r --ignore-init-module-imports swmclient
-	black swmclient
-	isort swmclient
+	autoflake -i -r --ignore-init-module-imports swmclient scripts
+	black swmclient scripts
+	isort swmclient scripts
 
 check:
 	mypy swmclient
