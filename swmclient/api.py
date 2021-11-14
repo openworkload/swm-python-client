@@ -3,8 +3,10 @@
 from typing import Optional
 
 from .connection import SwmConnection
-from .generated.api.default import get_user_job
+from .generated.api.default import get_user_flavor, get_user_job, get_user_node
 from .generated.models.job import Job
+from .generated.models.node import Node
+from .generated.models.flavor import Flavor
 
 
 class SwmApi:
@@ -16,4 +18,14 @@ class SwmApi:
     def get_jobs(self) -> Optional[list[Job]]:
         if (client := self._conn.get_auth_client()) is not None:
             return get_user_job.sync(client=client)
+        return None
+
+    def get_flavors(self) -> Optional[list[Flavor]]:
+        if (client := self._conn.get_auth_client()) is not None:
+            return get_user_flavor.sync(client=client)
+        return None
+
+    def get_nodes(self) -> Optional[list[Node]]:
+        if (client := self._conn.get_auth_client()) is not None:
+            return get_user_node.sync(client=client)
         return None

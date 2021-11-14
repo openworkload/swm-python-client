@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
 
@@ -18,6 +18,12 @@ class Job:
     submit_time: Union[Unset, str] = UNSET
     start_time: Union[Unset, str] = UNSET
     end_time: Union[Unset, str] = UNSET
+    duration: Union[Unset, int] = UNSET
+    exitcode: Union[Unset, int] = UNSET
+    signal: Union[Unset, int] = UNSET
+    node_names: Union[Unset, List[str]] = UNSET
+    remote_id: Union[Unset, str] = UNSET
+    flavor_id: Union[Unset, str] = UNSET
     comment: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
@@ -31,6 +37,15 @@ class Job:
         submit_time = self.submit_time
         start_time = self.start_time
         end_time = self.end_time
+        duration = self.duration
+        exitcode = self.exitcode
+        signal = self.signal
+        node_names: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.node_names, Unset):
+            node_names = self.node_names
+
+        remote_id = self.remote_id
+        flavor_id = self.flavor_id
         comment = self.comment
 
         field_dict: Dict[str, Any] = {}
@@ -48,6 +63,18 @@ class Job:
             field_dict["start_time"] = start_time
         if end_time is not UNSET:
             field_dict["end_time"] = end_time
+        if duration is not UNSET:
+            field_dict["duration"] = duration
+        if exitcode is not UNSET:
+            field_dict["exitcode"] = exitcode
+        if signal is not UNSET:
+            field_dict["signal"] = signal
+        if node_names is not UNSET:
+            field_dict["node_names"] = node_names
+        if remote_id is not UNSET:
+            field_dict["remote_id"] = remote_id
+        if flavor_id is not UNSET:
+            field_dict["flavor_id"] = flavor_id
         if comment is not UNSET:
             field_dict["comment"] = comment
 
@@ -73,6 +100,18 @@ class Job:
 
         end_time = d.pop("end_time", UNSET)
 
+        duration = d.pop("duration", UNSET)
+
+        exitcode = d.pop("exitcode", UNSET)
+
+        signal = d.pop("signal", UNSET)
+
+        node_names = cast(List[str], d.pop("node_names", UNSET))
+
+        remote_id = d.pop("remote_id", UNSET)
+
+        flavor_id = d.pop("flavor_id", UNSET)
+
         comment = d.pop("comment", UNSET)
 
         job = cls(
@@ -82,6 +121,12 @@ class Job:
             submit_time=submit_time,
             start_time=start_time,
             end_time=end_time,
+            duration=duration,
+            exitcode=exitcode,
+            signal=signal,
+            node_names=node_names,
+            remote_id=remote_id,
+            flavor_id=flavor_id,
             comment=comment,
         )
 

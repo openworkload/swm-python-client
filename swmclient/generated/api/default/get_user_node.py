@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional
 import httpx
 
 from ...client import Client
-from ...models.job import Job
+from ...models.node import Node
 from ...types import Response
 
 
@@ -11,7 +11,7 @@ def _get_kwargs(
     *,
     client: Client,
 ) -> Dict[str, Any]:
-    url = "{}/user/job".format(client.base_url)
+    url = "{}/user/node".format(client.base_url)
 
     headers: Dict[str, Any] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
@@ -24,12 +24,12 @@ def _get_kwargs(
     }
 
 
-def _parse_response(*, response: httpx.Response) -> Optional[List[Job]]:
+def _parse_response(*, response: httpx.Response) -> Optional[List[Node]]:
     if response.status_code == 200:
         response_200 = []
         _response_200 = response.json()
         for response_200_item_data in _response_200:
-            response_200_item = Job.from_dict(response_200_item_data)
+            response_200_item = Node.from_dict(response_200_item_data)
 
             response_200.append(response_200_item)
 
@@ -37,7 +37,7 @@ def _parse_response(*, response: httpx.Response) -> Optional[List[Job]]:
     return None
 
 
-def _build_response(*, response: httpx.Response) -> Response[List[Job]]:
+def _build_response(*, response: httpx.Response) -> Response[List[Node]]:
     return Response(
         status_code=response.status_code,
         content=response.content,
@@ -49,7 +49,7 @@ def _build_response(*, response: httpx.Response) -> Response[List[Job]]:
 def sync_detailed(
     *,
     client: Client,
-) -> Response[List[Job]]:
+) -> Response[List[Node]]:
     kwargs = _get_kwargs(
         client=client,
     )
@@ -65,8 +65,8 @@ def sync_detailed(
 def sync(
     *,
     client: Client,
-) -> Optional[List[Job]]:
-    """Returns a list of job objects"""
+) -> Optional[List[Node]]:
+    """Returns a list of node objects"""
 
     return sync_detailed(
         client=client,
@@ -76,7 +76,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Client,
-) -> Response[List[Job]]:
+) -> Response[List[Node]]:
     kwargs = _get_kwargs(
         client=client,
     )
@@ -90,8 +90,8 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Client,
-) -> Optional[List[Job]]:
-    """Returns a list of job objects"""
+) -> Optional[List[Node]]:
+    """Returns a list of node objects"""
 
     return (
         await asyncio_detailed(
