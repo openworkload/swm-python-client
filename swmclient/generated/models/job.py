@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Type, TypeVar, Union, cast
 import attr
 
 from ..models.job_state import JobState
+from ..models.resource import Resource
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Job")
@@ -24,6 +25,8 @@ class Job:
     node_names: Union[Unset, List[str]] = UNSET
     remote_id: Union[Unset, str] = UNSET
     flavor_id: Union[Unset, str] = UNSET
+    request: Union[Unset, List[Resource]] = UNSET
+    resources: Union[Unset, List[Resource]] = UNSET
     comment: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
@@ -46,6 +49,22 @@ class Job:
 
         remote_id = self.remote_id
         flavor_id = self.flavor_id
+        request: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.request, Unset):
+            request = []
+            for request_item_data in self.request:
+                request_item = request_item_data.to_dict()
+
+                request.append(request_item)
+
+        resources: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.resources, Unset):
+            resources = []
+            for resources_item_data in self.resources:
+                resources_item = resources_item_data.to_dict()
+
+                resources.append(resources_item)
+
         comment = self.comment
 
         field_dict: Dict[str, Any] = {}
@@ -75,6 +94,10 @@ class Job:
             field_dict["remote_id"] = remote_id
         if flavor_id is not UNSET:
             field_dict["flavor_id"] = flavor_id
+        if request is not UNSET:
+            field_dict["request"] = request
+        if resources is not UNSET:
+            field_dict["resources"] = resources
         if comment is not UNSET:
             field_dict["comment"] = comment
 
@@ -112,6 +135,20 @@ class Job:
 
         flavor_id = d.pop("flavor_id", UNSET)
 
+        request = []
+        _request = d.pop("request", UNSET)
+        for request_item_data in _request or []:
+            request_item = Resource.from_dict(request_item_data)
+
+            request.append(request_item)
+
+        resources = []
+        _resources = d.pop("resources", UNSET)
+        for resources_item_data in _resources or []:
+            resources_item = Resource.from_dict(resources_item_data)
+
+            resources.append(resources_item)
+
         comment = d.pop("comment", UNSET)
 
         job = cls(
@@ -127,6 +164,8 @@ class Job:
             node_names=node_names,
             remote_id=remote_id,
             flavor_id=flavor_id,
+            request=request,
+            resources=resources,
             comment=comment,
         )
 
