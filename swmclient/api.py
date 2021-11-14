@@ -4,9 +4,9 @@ from typing import Optional
 
 from .connection import SwmConnection
 from .generated.api.default import get_user_flavor, get_user_job, get_user_node
+from .generated.models.flavor import Flavor
 from .generated.models.job import Job
 from .generated.models.node import Node
-from .generated.models.flavor import Flavor
 
 
 class SwmApi:

@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 
+from ..models.node_role import NodeRole
 from ..models.node_state_alloc import NodeStateAlloc
 from ..models.node_state_power import NodeStatePower
 from ..models.resource import Resource
@@ -21,6 +22,7 @@ class Node:
     state_power: Union[Unset, NodeStatePower] = UNSET
     state_alloc: Union[Unset, NodeStateAlloc] = UNSET
     resources: Union[Unset, List[Resource]] = UNSET
+    roles: Union[Unset, List[NodeRole]] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -44,6 +46,14 @@ class Node:
 
                 resources.append(resources_item)
 
+        roles: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.roles, Unset):
+            roles = []
+            for roles_item_data in self.roles:
+                roles_item = roles_item_data.to_dict()
+
+                roles.append(roles_item)
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -61,6 +71,8 @@ class Node:
             field_dict["state_alloc"] = state_alloc
         if resources is not UNSET:
             field_dict["resources"] = resources
+        if roles is not UNSET:
+            field_dict["roles"] = roles
 
         return field_dict
 
@@ -96,6 +108,13 @@ class Node:
 
             resources.append(resources_item)
 
+        roles = []
+        _roles = d.pop("roles", UNSET)
+        for roles_item_data in _roles or []:
+            roles_item = NodeRole.from_dict(roles_item_data)
+
+            roles.append(roles_item)
+
         node = cls(
             id=id,
             name=name,
@@ -104,6 +123,7 @@ class Node:
             state_power=state_power,
             state_alloc=state_alloc,
             resources=resources,
+            roles=roles,
         )
 
         node.additional_properties = d
