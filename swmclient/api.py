@@ -1,13 +1,21 @@
 """Contains end user interface to make SWM API queries"""
 
-from typing import Optional
+from typing import Any, Optional, Union
 
 from .connection import SwmConnection
-from .generated.api.default import get_user_flavor, get_user_job, get_user_node, get_user_remote
+from .generated.api.default import (
+    get_user_flavor,
+    get_user_job,
+    get_user_job_job_id_stderr,
+    get_user_job_job_id_stdout,
+    get_user_node,
+    get_user_remote,
+)
 from .generated.models.flavor import Flavor
 from .generated.models.job import Job
 from .generated.models.node import Node
 from .generated.models.remote_site import RemoteSite
+from .generated.types import File
 
 
 class SwmApi:
@@ -34,4 +42,14 @@ class SwmApi:
     def get_remote_sites(self) -> Optional[list[RemoteSite]]:
         if (client := self._conn.get_auth_client()) is not None:
             return get_user_remote.sync(client=client)
+        return None
+
+    def get_job_stdout(self, job_id: str) -> Optional[Union[Any, File]]:
+        if (client := self._conn.get_auth_client()) is not None:
+            return get_user_job_job_id_stdout.sync(job_id=job_id, client=client)
+        return None
+
+    def get_job_stderr(self, job_id: str) -> Optional[Union[Any, File]]:
+        if (client := self._conn.get_auth_client()) is not None:
+            return get_user_job_job_id_stderr.sync(job_id=job_id, client=client)
         return None

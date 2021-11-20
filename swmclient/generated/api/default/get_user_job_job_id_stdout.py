@@ -1,10 +1,10 @@
+from io import BytesIO
 from typing import Any, Dict, Optional, Union
 
 import httpx
 
 from ...client import Client
-from ...models.job import Job
-from ...types import Response
+from ...types import File, Response
 
 
 def _get_kwargs(
@@ -12,7 +12,7 @@ def _get_kwargs(
     *,
     client: Client,
 ) -> Dict[str, Any]:
-    url = "{}/user/job/{jobId}".format(client.base_url, jobId=job_id)
+    url = "{}/user/job/{jobId}/stdout".format(client.base_url, jobId=job_id)
 
     headers: Dict[str, Any] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
@@ -25,9 +25,9 @@ def _get_kwargs(
     }
 
 
-def _parse_response(*, response: httpx.Response) -> Optional[Union[Any, Job]]:
+def _parse_response(*, response: httpx.Response) -> Optional[Union[Any, File]]:
     if response.status_code == 200:
-        response_200 = Job.from_dict(response.json())
+        response_200 = File(payload=BytesIO(response.content))
 
         return response_200
     if response.status_code == 400:
@@ -41,7 +41,7 @@ def _parse_response(*, response: httpx.Response) -> Optional[Union[Any, Job]]:
     return None
 
 
-def _build_response(*, response: httpx.Response) -> Response[Union[Any, Job]]:
+def _build_response(*, response: httpx.Response) -> Response[Union[Any, File]]:
     return Response(
         status_code=response.status_code,
         content=response.content,
@@ -54,7 +54,7 @@ def sync_detailed(
     job_id: str,
     *,
     client: Client,
-) -> Response[Union[Any, Job]]:
+) -> Response[Union[Any, File]]:
     kwargs = _get_kwargs(
         job_id=job_id,
         client=client,
@@ -72,8 +72,8 @@ def sync(
     job_id: str,
     *,
     client: Client,
-) -> Optional[Union[Any, Job]]:
-    """Returns a single job information"""
+) -> Optional[Union[Any, File]]:
+    """Get job standard output content"""
 
     return sync_detailed(
         job_id=job_id,
@@ -85,7 +85,7 @@ async def asyncio_detailed(
     job_id: str,
     *,
     client: Client,
-) -> Response[Union[Any, Job]]:
+) -> Response[Union[Any, File]]:
     kwargs = _get_kwargs(
         job_id=job_id,
         client=client,
@@ -101,8 +101,8 @@ async def asyncio(
     job_id: str,
     *,
     client: Client,
-) -> Optional[Union[Any, Job]]:
-    """Returns a single job information"""
+) -> Optional[Union[Any, File]]:
+    """Get job standard output content"""
 
     return (
         await asyncio_detailed(
