@@ -4,6 +4,7 @@ from typing import Any, Optional, Union
 
 from .connection import SwmConnection
 from .generated.api.default import (
+    delete_user_job_job_id,
     get_user_flavor,
     get_user_job,
     get_user_job_job_id_stderr,
@@ -52,4 +53,10 @@ class SwmApi:
     def get_job_stderr(self, job_id: str) -> Optional[Union[Any, File]]:
         if (client := self._conn.get_auth_client()) is not None:
             return get_user_job_job_id_stderr.sync(job_id=job_id, client=client)
+        return None
+
+    def cancel_job(self, job_id: str) -> Optional[bytes]:
+        if (client := self._conn.get_auth_client()) is not None:
+            response = delete_user_job_job_id.sync_detailed(job_id=job_id, client=client)
+            return response.content
         return None
