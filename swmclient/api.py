@@ -3,10 +3,11 @@
 from typing import Optional
 
 from .connection import SwmConnection
-from .generated.api.default import get_user_flavor, get_user_job, get_user_node
+from .generated.api.default import get_user_flavor, get_user_job, get_user_node, get_user_remote
 from .generated.models.flavor import Flavor
 from .generated.models.job import Job
 from .generated.models.node import Node
+from .generated.models.remote_site import RemoteSite
 
 
 class SwmApi:
@@ -28,4 +29,9 @@ class SwmApi:
     def get_nodes(self) -> Optional[list[Node]]:
         if (client := self._conn.get_auth_client()) is not None:
             return get_user_node.sync(client=client)
+        return None
+
+    def get_remote_sites(self) -> Optional[list[RemoteSite]]:
+        if (client := self._conn.get_auth_client()) is not None:
+            return get_user_remote.sync(client=client)
         return None

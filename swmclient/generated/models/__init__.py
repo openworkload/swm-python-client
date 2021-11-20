@@ -8,4 +8,5 @@ from .node import Node
 from .node_role import NodeRole
 from .node_state_alloc import NodeStateAlloc
 from .node_state_power import NodeStatePower
+from .remote_site import RemoteSite
 from .resource import Resource
