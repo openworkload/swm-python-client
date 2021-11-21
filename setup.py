@@ -8,7 +8,7 @@ from codecs import open  # to use a consistent encoding
 from os import path
 from subprocess import check_output
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def get_version():
@@ -39,10 +39,10 @@ setup(
     url="https://github.com/skyworkflows/swm-python-client",
     author="Taras Shapovalov",
     author_email="taras@iclouds.net",
-    packages=["swmclient"],
+    packages=find_packages(),
     license="BSD",
     include_package_data=True,
-    install_requires=["pytest"],
+    install_requires=[],
     python_requires=">=3.9, <4",
     classifiers=[
         "Development Status :: 3 - Alpha",

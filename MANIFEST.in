@@ -1,1 +1,2 @@
 include swmclient/logo64.png
+recursive-include swmclient
