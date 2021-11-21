@@ -18,36 +18,54 @@ as an example).
 # Build
 
 ## Requirements:
-    sudo apt-get install python3-all-dev
-    sudo apt install python3-pip
 
+1) Use swm-core dev container or install manually:
+```bash
+sudo apt-get install python3-all-dev
+sudo apt install python3-pip
 
-## Run unit tests
-    make test
+pip3 install pip-tools
+pip3 install virtualenv
+```
 
+Note: python >= 3.9 is required.
 
-## Build pip package
+2) Install the project dependencies with virtualenv
+```bash
+make prepare-venv
+```
 
-### Requirements:
-    sudo python3 -m pip install --upgrade pip setuptools wheel
-    sudo python3 -m pip install tqdm
-    sudo python3 -m pip install --user --upgrade twine
+## Run code autoformatting and validation tools:
+```bash
+make format
+make check
+```
 
-### Build the package:
-    make clean
-    make package
+## Run unit tests:
+```bash
+make test
+```
 
-### Upload to pypi.org:
-    make upload
+## Build pip package and upload to pypi.org:
+
+```bash
+make clean
+make package
+make upload
+```
 
 
 # Setup
 
-## Installation:
-    python3 -m pip install --user swmclient
+## Installation from PyPi:
+```bash
+python3 -m pip install --user swmclient
+```
 
-## Uninstallation:
-    python3 -m pip uninstall swmclient
+## Remove installed package:
+```bash
+python3 -m pip uninstall swmclient
+```
 
 
 # Contributing
