@@ -1,4 +1,4 @@
-Python bindings for swm-core client REST API
+Python bindings for swm-core user REST API
 ============================================
 
 # Description
@@ -49,6 +49,7 @@ make test
 ## Build pip package and upload to pypi.org:
 
 ```bash
+. .venv/bin/activate
 make clean
 make package
 make upload
@@ -56,6 +57,8 @@ make upload
 
 
 # Setup
+
+The latest stable version of the package is uploaded to [PyPi](https://pypi.org/project/swmclient).
 
 ## Installation from PyPi:
 ```bash

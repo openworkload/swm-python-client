@@ -12,11 +12,11 @@ from setuptools import setup
 
 
 def get_version():
-    cmd = "git describe --dirty"
+    cmd = "git describe"
     try:
         result = check_output(
             cmd.split(),
-        ).strip()
+        ).decode('utf-8').strip()
     except:
         result = "?"
     return result
@@ -25,17 +25,18 @@ def get_version():
 def get_long_description():
     here = path.abspath(path.dirname(__file__))
     with open(path.join(here, "README.md"), encoding="utf-8") as f:
-        f.read()
+        long_description = f.read()
+    return long_description
 
 
 setup(
     name="swmclient",
     version=get_version(),
-    description="Sky Workload Manager core daemon python interface",
+    description="Python bindings for swm-core user REST API",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    keywords="hpc highperformancecomputing workload cloud computing jupyter",
-    url="https://github.com/skyworkflows/swm-core/python",
+    keywords="hpc highperformancecomputing workload cloudcomputing jupyter swm skyworkloadmanager",
+    url="https://github.com/skyworkflows/swm-python-client",
     author="Taras Shapovalov",
     author_email="taras@iclouds.net",
     packages=["swmclient"],
@@ -53,7 +54,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
     ],
     project_urls={
-        "Bug Reports": "https://github.com/skyworkflows/swm-core/issues",
-        "Source": "https://github.com/skyworkflows/swm-core/python",
+        "Bug Reports": "https://github.com/skyworkflows/swm-python-client/issues",
+        "Source": "https://github.com/skyworkflows/swm-python-client",
     },
 )
