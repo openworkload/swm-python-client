@@ -1,24 +1,20 @@
-from typing import Any, Dict, Union
+from typing import Any, Dict
 
 import httpx
 
 from ...client import Client
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
 def _get_kwargs(
     job_id: str,
     *,
     client: Client,
-    api_key: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
     url = "{}/user/job/{jobId}".format(client.base_url, jobId=job_id)
 
     headers: Dict[str, Any] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
-
-    if api_key is not UNSET:
-        headers["api-key"] = api_key
 
     return {
         "url": url,
@@ -41,12 +37,10 @@ def sync_detailed(
     job_id: str,
     *,
     client: Client,
-    api_key: Union[Unset, str] = UNSET,
 ) -> Response[Any]:
     kwargs = _get_kwargs(
         job_id=job_id,
         client=client,
-        api_key=api_key,
     )
 
     response = httpx.delete(
@@ -61,12 +55,10 @@ async def asyncio_detailed(
     job_id: str,
     *,
     client: Client,
-    api_key: Union[Unset, str] = UNSET,
 ) -> Response[Any]:
     kwargs = _get_kwargs(
         job_id=job_id,
         client=client,
-        api_key=api_key,
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:

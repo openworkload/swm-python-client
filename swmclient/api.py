@@ -11,6 +11,7 @@ from .generated.api.default import (
     get_user_job_job_id_stdout,
     get_user_node,
     get_user_remote,
+    patch_user_job_job_id,
 )
 from .generated.models.flavor import Flavor
 from .generated.models.job import Job
@@ -58,5 +59,11 @@ class SwmApi:
     def cancel_job(self, job_id: str) -> Optional[bytes]:
         if (client := self._conn.get_auth_client()) is not None:
             response = delete_user_job_job_id.sync_detailed(job_id=job_id, client=client)
+            return response.content
+        return None
+
+    def requeue_job(self, job_id: str) -> Optional[bytes]:
+        if (client := self._conn.get_auth_client()) is not None:
+            response = patch_user_job_job_id.sync_detailed(job_id=job_id, client=client, modification="requeue")
             return response.content
         return None

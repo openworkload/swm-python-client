@@ -17,6 +17,8 @@ do
     esac
 done
 
+. .venv/bin/activate
+
 # Reliably get the script directory
 pushd . > /dev/null
 SCRIPT_DIR="${BASH_SOURCE[0]}"
