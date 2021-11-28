@@ -77,7 +77,7 @@ We appreciate all contributions. If you are planning to contribute back bug-fixe
 without any further discussion. If you plan to contribute new features, utility functions or extensions,
 please first open an issue and discuss the feature with us.
 
-# Lincese
+# License
 
 We use a shared copyright model that enables all contributors to maintain the copyright on their contributions.
 
