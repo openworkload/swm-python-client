@@ -11,7 +11,7 @@ T = TypeVar("T", bound="Job")
 
 @attr.s(auto_attribs=True)
 class Job:
-    """A job information that is known to SkyPort"""
+    """A job information that is known to Sky Port"""
 
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET

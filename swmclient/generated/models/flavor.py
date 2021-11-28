@@ -10,7 +10,7 @@ T = TypeVar("T", bound="Flavor")
 
 @attr.s(auto_attribs=True)
 class Flavor:
-    """A flavor information that is known to SkyPort"""
+    """A flavor information that is known to Sky Port"""
 
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
