@@ -12,7 +12,7 @@ generate:
 prepare-venv: .SHELLFLAGS := -euo pipefail -c
 prepare-venv: SHELL := bash
 prepare-venv:
-	python3 -m pip install 'virtualenv>=16.4.3' 'pip-tools'
+	$(PYTHON) -m pip install 'virtualenv>=16.4.3' 'pip-tools'
 	virtualenv --system-site-packages .venv
 	$(VENV_BIN)/pip install --ignore-installed --no-deps -r requirements.txt
 

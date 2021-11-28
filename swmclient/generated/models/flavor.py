@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 
+from ..models.resource import Resource
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Flavor")
@@ -14,9 +15,7 @@ class Flavor:
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
     remote_id: Union[Unset, str] = UNSET
-    cpus: Union[Unset, int] = UNSET
-    mem: Union[Unset, int] = UNSET
-    storage: Union[Unset, int] = UNSET
+    resources: Union[Unset, List[Resource]] = UNSET
     price: Union[Unset, float] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
@@ -24,9 +23,14 @@ class Flavor:
         id = self.id
         name = self.name
         remote_id = self.remote_id
-        cpus = self.cpus
-        mem = self.mem
-        storage = self.storage
+        resources: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.resources, Unset):
+            resources = []
+            for resources_item_data in self.resources:
+                resources_item = resources_item_data.to_dict()
+
+                resources.append(resources_item)
+
         price = self.price
 
         field_dict: Dict[str, Any] = {}
@@ -38,12 +42,8 @@ class Flavor:
             field_dict["name"] = name
         if remote_id is not UNSET:
             field_dict["remote_id"] = remote_id
-        if cpus is not UNSET:
-            field_dict["cpus"] = cpus
-        if mem is not UNSET:
-            field_dict["mem"] = mem
-        if storage is not UNSET:
-            field_dict["storage"] = storage
+        if resources is not UNSET:
+            field_dict["resources"] = resources
         if price is not UNSET:
             field_dict["price"] = price
 
@@ -58,11 +58,12 @@ class Flavor:
 
         remote_id = d.pop("remote_id", UNSET)
 
-        cpus = d.pop("cpus", UNSET)
+        resources = []
+        _resources = d.pop("resources", UNSET)
+        for resources_item_data in _resources or []:
+            resources_item = Resource.from_dict(resources_item_data)
 
-        mem = d.pop("mem", UNSET)
-
-        storage = d.pop("storage", UNSET)
+            resources.append(resources_item)
 
         price = d.pop("price", UNSET)
 
@@ -70,9 +71,7 @@ class Flavor:
             id=id,
             name=name,
             remote_id=remote_id,
-            cpus=cpus,
-            mem=mem,
-            storage=storage,
+            resources=resources,
             price=price,
         )
 
