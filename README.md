@@ -1,11 +1,13 @@
-.. image:: https://img.shields.io/pypi/v/swmclient.svg
-    :target: https://pypi.python.org/pypi/swmclient
-.. image:: https://img.shields.io/pypi/pyversions/swmclient.svg
-    :target: https://pypi.python.org/pypi/swmclient
-.. image:: https://img.shields.io/pypi/status/swmclient.svg
-    :target: https://pypi.python.org/pypi/swmclient
-.. image:: https://img.shields.io/pypi/l/swmclient.svg
-    :target: https://github.com/skyworkflows/swm-python-client/blob/master/LICENSE
+<p align="center">
+    <a href="https://pypi.python.org/pypi/swmclient" alt="Latest package version">
+        <img src="https://img.shields.io/pypi/v/swmclient.svg" /></a>
+    <a href="https://pypi.python.org/pypi/swmclient" alt="Python version">
+        <img src="https://img.shields.io/pypi/pyversions/swmclient.svg" /></a>
+    <a href="https://pypi.python.org/pypi/swmclient" alt="Package status">
+        <img src="https://img.shields.io/pypi/status/swmclient.svg" /></a>
+    <a href="https://github.com/skyworkflows/swm-python-client/blob/master/LICENSE" alt="License">
+        <img src="https://img.shields.io/pypi/l/swmclient.svg" /></a>
+</p>
 
 
 Python bindings for swm-core user REST API
