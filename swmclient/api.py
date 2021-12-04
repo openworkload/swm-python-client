@@ -19,12 +19,13 @@ from .generated.api.default import (
 from .generated.models.flavor import Flavor
 from .generated.models.job import Job
 from .generated.models.node import Node
-from .generated.models.post_user_job_multipart_data import PostUserJobMultipartData
 from .generated.models.remote_site import RemoteSite
 from .generated.types import File
 
 
 class SwmApi:
+    """Main class for all the API bindins."""
+
     def __init__(self, url: str, key_file: str, cert_file: str, ca_file: str, password: str = "") -> None:
         self._conn = SwmConnection(url, key_file, cert_file, ca_file)
         headers = {"Accept": "application/json"}
