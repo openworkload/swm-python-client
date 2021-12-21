@@ -42,7 +42,7 @@ setup(
     packages=find_packages(),
     license="BSD",
     include_package_data=True,
-    install_requires=[],
+    install_requires=["httpx"],
     python_requires=">=3.9, <4",
     classifiers=[
         "Development Status :: 3 - Alpha",
