@@ -1,8 +1,5 @@
-# ========================================================================
-# setup.py
-# ========================================================================
-# See also: https://github.com/pypa/sampleproject/blob/master/setup.py
-#########################################################################
+#!/usr/bin/env python
+# coding: utf-8
 
 from codecs import open  # to use a consistent encoding
 from os import path
@@ -35,7 +32,6 @@ setup(
     description="Python bindings for swm-core user REST API",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    keywords="hpc highperformancecomputing workload cloudcomputing jupyter swm skyworkloadmanager",
     url="https://github.com/skyworkflows/swm-python-client",
     author="Taras Shapovalov",
     author_email="taras@iclouds.net",
@@ -44,6 +40,15 @@ setup(
     include_package_data=True,
     install_requires=["httpx"],
     python_requires=">=3.9, <4",
+    platforms="Linux, Mac OS X, Windows",
+    keywords=[
+        "HPC",
+        "High Performance Computing",
+        "Cloud Computing",
+        "SWM",
+        "Sky Workload Manager",
+        "Sky Port"
+    ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
