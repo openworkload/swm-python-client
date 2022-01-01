@@ -23,6 +23,7 @@ class Job:
     exitcode: Union[Unset, int] = UNSET
     signal: Union[Unset, int] = UNSET
     node_names: Union[Unset, List[str]] = UNSET
+    node_ips: Union[Unset, List[str]] = UNSET
     remote_id: Union[Unset, str] = UNSET
     flavor_id: Union[Unset, str] = UNSET
     request: Union[Unset, List[Resource]] = UNSET
@@ -46,6 +47,10 @@ class Job:
         node_names: Union[Unset, List[str]] = UNSET
         if not isinstance(self.node_names, Unset):
             node_names = self.node_names
+
+        node_ips: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.node_ips, Unset):
+            node_ips = self.node_ips
 
         remote_id = self.remote_id
         flavor_id = self.flavor_id
@@ -90,6 +95,8 @@ class Job:
             field_dict["signal"] = signal
         if node_names is not UNSET:
             field_dict["node_names"] = node_names
+        if node_ips is not UNSET:
+            field_dict["node_ips"] = node_ips
         if remote_id is not UNSET:
             field_dict["remote_id"] = remote_id
         if flavor_id is not UNSET:
@@ -131,6 +138,8 @@ class Job:
 
         node_names = cast(List[str], d.pop("node_names", UNSET))
 
+        node_ips = cast(List[str], d.pop("node_ips", UNSET))
+
         remote_id = d.pop("remote_id", UNSET)
 
         flavor_id = d.pop("flavor_id", UNSET)
@@ -162,6 +171,7 @@ class Job:
             exitcode=exitcode,
             signal=signal,
             node_names=node_names,
+            node_ips=node_ips,
             remote_id=remote_id,
             flavor_id=flavor_id,
             request=request,
