@@ -9,6 +9,7 @@ import io
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 from swmclient.api import SwmApi
+from swmclient.generated.types import File
 
 
 def main() -> None:
