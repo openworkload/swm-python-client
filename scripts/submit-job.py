@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
+import io
 import os
 import platform
 import sys
-import io
 
 # For development purpose we need to use swmclient from the sources:
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))

@@ -5,7 +5,7 @@
         <img src="https://img.shields.io/pypi/pyversions/swmclient.svg" /></a>
     <a href="https://pypi.python.org/pypi/swmclient" alt="Package status">
         <img src="https://img.shields.io/pypi/status/swmclient.svg" /></a>
-    <a href="https://github.com/skyworkflows/swm-python-client/blob/master/LICENSE" alt="License">
+    <a href="https://github.com/openworkload/swm-python-client/blob/master/LICENSE" alt="License">
         <img src="https://img.shields.io/pypi/l/swmclient.svg" /></a>
 </p>
 
@@ -21,10 +21,10 @@ and compute resource providers. Sky Port makes it easy to connect user software
 to different cloud resources.
 
 The current python package represents a wrapper around client REST API of the core
-component of Sky Port -- [core daemon](https://github.com/skyworkflows/swm-core).
+component of Sky Port -- [core daemon](https://github.com/openworkload/swm-core).
 The package provides classes and data structures that can be used in python programs 
 in order to communicate with swm-core. Such communication is useful when Sky Port
-terminals are built (see [JupyterLab terminal](https://github.com/skyworkflows/swm-jupyter-term)
+terminals are built (see [JupyterLab terminal](https://github.com/openworkload/swm-jupyter-term)
 as an example).
 
 # Build

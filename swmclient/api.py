@@ -19,6 +19,7 @@ from .generated.api.default import (
 from .generated.models.flavor import Flavor
 from .generated.models.job import Job
 from .generated.models.node import Node
+from .generated.models.post_user_job_multipart_data import PostUserJobMultipartData
 from .generated.models.remote_site import RemoteSite
 from .generated.types import File
 
@@ -80,6 +81,6 @@ class SwmApi:
 
     def submit_job(self, script_bytes: BytesIO) -> Optional[File]:
         if (client := self._conn.get_auth_client()) is not None:
-            data = post_user_job.PostUserJobMultipartData(script_content=File(payload=script_bytes))
+            data = PostUserJobMultipartData(script_content=File(payload=script_bytes))
             return post_user_job.sync(client=client, multipart_data=data)
         return None

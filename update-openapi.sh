@@ -39,7 +39,7 @@ CONFIG=${SCRIPT_DIR}/openapi-python-client.yaml
 if [ $ARG_LOCAL ]; then
   URL_ARG="--path $SCRIPT_DIR/../swm-core/priv/openapi.yaml"
 else
-  URL_ARG="--url https://raw.githubusercontent.com/skyworkflows/swm-core/${GIT_BRANCH}/priv/openapi.yaml"
+  URL_ARG="--url https://raw.githubusercontent.com/openworkload/swm-core/${GIT_BRANCH}/priv/openapi.yaml"
 fi
 
 $HOME/.local/bin/openapi-python-client update ${URL_ARG} --config $CONFIG --fail-on-warning

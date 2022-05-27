@@ -32,7 +32,7 @@ setup(
     description="Python bindings for swm-core user REST API",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    url="https://github.com/skyworkflows/swm-python-client",
+    url="https://github.com/openworkload/swm-python-client",
     author="Taras Shapovalov",
     author_email="taras@iclouds.net",
     packages=find_packages(),
@@ -45,8 +45,7 @@ setup(
         "HPC",
         "High Performance Computing",
         "Cloud Computing",
-        "SWM",
-        "Sky Workload Manager",
+        "Open Workload",
         "Sky Port"
     ],
     classifiers=[
@@ -59,7 +58,7 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
     ],
     project_urls={
-        "Bug Reports": "https://github.com/skyworkflows/swm-python-client/issues",
-        "Source": "https://github.com/skyworkflows/swm-python-client",
+        "Bug Reports": "https://github.com/openworkload/swm-python-client/issues",
+        "Source": "https://github.com/openworkload/swm-python-client",
     },
 )
