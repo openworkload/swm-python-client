@@ -6,6 +6,8 @@
 #
 anyio==3.6.2
     # via httpcore
+attrs==22.2.0
+    # via flake8-bugbear
 autoflake==1.4
     # via -r requirements.in
 black==21.11b1
@@ -30,6 +32,10 @@ cryptography==35.0.0
 docutils==0.18
     # via readme-renderer
 flake8==4.0.1
+    # via
+    #   -r requirements.in
+    #   flake8-bugbear
+flake8-bugbear==23.1.20
     # via -r requirements.in
 h11==0.14.0
     # via httpcore
