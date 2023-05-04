@@ -11,6 +11,32 @@ exclude = '''
 )
 '''
 
+[tool.ruff]
+line-length = 120
+exclude = [
+    "swmclient/generated",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
 [tool.isort]
 line_length = 120
 profile = "black"
@@ -25,3 +51,4 @@ module = "tests.*"
 allow_untyped_defs = true
 allow_incomplete_defs = true
 allow_untyped_calls = true
+

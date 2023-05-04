@@ -25,7 +25,7 @@ format:
 .PHONY: check
 check:
 	. .venv/bin/activate
-	$(VENV_BIN)/flake8 swmclient
+	$(VENV_BIN)/ruff swmclient
 	$(VENV_BIN)/mypy swmclient
 
 .PHONY: package
