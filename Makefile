@@ -27,6 +27,7 @@ check:
 	. .venv/bin/activate
 	$(VENV_BIN)/ruff swmclient
 	$(VENV_BIN)/mypy swmclient
+	$(VENV_BIN)/bandit -r swmclient -c "pyproject.toml" --silent
 
 .PHONY: package
 package:

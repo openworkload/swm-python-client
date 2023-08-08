@@ -8,6 +8,8 @@ anyio==3.6.2
     # via httpcore
 autoflake==1.4
     # via -r requirements.in
+bandit==1.7.5
+    # via -r requirements.in
 black==21.11b1
     # via -r requirements.in
 bleach==4.1.0
@@ -29,6 +31,10 @@ cryptography==35.0.0
     # via secretstorage
 docutils==0.18
     # via readme-renderer
+gitdb==4.0.10
+    # via gitpython
+gitpython==3.1.32
+    # via bandit
 h11==0.14.0
     # via httpcore
 httpcore==0.16.2
@@ -52,6 +58,10 @@ jeepney==0.7.1
     #   secretstorage
 keyring==23.2.1
     # via twine
+markdown-it-py==3.0.0
+    # via rich
+mdurl==0.1.2
+    # via markdown-it-py
 mypy==0.910
     # via -r requirements.in
 mypy-extensions==0.4.3
@@ -62,6 +72,8 @@ packaging==21.3
     # via bleach
 pathspec==0.9.0
     # via black
+pbr==5.11.1
+    # via stevedore
 pkginfo==1.8.1
     # via twine
 platformdirs==2.4.0
@@ -70,10 +82,14 @@ pycparser==2.21
     # via cffi
 pyflakes==2.4.0
     # via autoflake
-pygments==2.10.0
-    # via readme-renderer
+pygments==2.16.1
+    # via
+    #   readme-renderer
+    #   rich
 pyparsing==3.0.6
     # via packaging
+pyyaml==6.0.1
+    # via bandit
 readme-renderer==30.0
     # via twine
 regex==2021.11.10
@@ -88,17 +104,23 @@ rfc3986[idna2008]==1.5.0
     # via
     #   httpx
     #   twine
+rich==13.5.2
+    # via bandit
 ruff==0.0.264
     # via -r requirements.in
 secretstorage==3.3.1
     # via keyring
 six==1.16.0
     # via bleach
+smmap==5.0.0
+    # via gitdb
 sniffio==1.3.0
     # via
     #   anyio
     #   httpcore
     #   httpx
+stevedore==5.1.0
+    # via bandit
 toml==0.10.2
     # via mypy
 tomli==1.2.2

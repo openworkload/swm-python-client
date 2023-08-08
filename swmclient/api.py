@@ -27,7 +27,9 @@ from .generated.types import File
 class SwmApi:
     """Main class for all the API bindins."""
 
-    def __init__(self, url: str, key_file: str, cert_file: str, ca_file: str, password: str = "") -> None:
+    def __init__(
+        self, url: str, key_file: str, cert_file: str, ca_file: str, password: Union[str, None] = None
+    ) -> None:
         self._conn = SwmConnection(url, key_file, cert_file, ca_file)
         headers = {"Accept": "application/json"}
         self._conn.establish(headers, password)

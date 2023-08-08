@@ -30,7 +30,9 @@ class SwmConnection:
             ssl_context.verify_mode = ssl.CERT_REQUIRED
             ssl_context.load_verify_locations(cafile=str(self._ca_file))
             ssl_context.load_cert_chain(certfile=str(self._cert_file), keyfile=str(self._key_file), password=password)
-            self._client = AuthenticatedClient(base_url=self._url, headers=headers, verify_ssl=ssl_context, token="swm")
+            self._client = AuthenticatedClient(
+                base_url=self._url, headers=headers, verify_ssl=ssl_context, token="swm"
+            )  # nosec "B106"
 
     def get_auth_client(self) -> Optional[AuthenticatedClient]:
         return self._client

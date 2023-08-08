@@ -40,6 +40,7 @@ exclude = [
 [tool.isort]
 line_length = 120
 profile = "black"
+skip = ".venv"
 
 [tool.mypy]
 python_version = 3.9
@@ -52,3 +53,5 @@ allow_untyped_defs = true
 allow_incomplete_defs = true
 allow_untyped_calls = true
 
+[tool.bandit]
+skips = []

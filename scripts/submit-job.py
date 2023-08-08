@@ -20,7 +20,7 @@ def main() -> None:
         ca_file="/opt/swm/spool/secure/cluster/ca-chain-cert.pem",
     )
 
-    job_script_bytes = bytes("#!/bin/bash\n#SWM image ubuntu:18.04\ndate\nhostname\n", "utf-8")
+    job_script_bytes = bytes("#!/bin/bash\n#SWM image ubuntu:22.04\ndate\nhostname\n", "utf-8")
     io_bytes = io.BytesIO(job_script_bytes)
     io_obj: File = swm_api.submit_job(io_bytes)
     while True:

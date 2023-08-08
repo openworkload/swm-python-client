@@ -1,4 +1,5 @@
 autoflake
+bandit
 black
 ruff
 isort
