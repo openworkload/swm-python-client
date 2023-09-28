@@ -13,7 +13,7 @@ def get_version():
     try:
         result = check_output(
             cmd.split(),
-        ).decode('utf-8').strip()
+        ).decode('utf-8').strip().split("-")[0]
     except:
         result = "?"
     return result

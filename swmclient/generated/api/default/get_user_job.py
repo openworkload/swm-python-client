@@ -1,31 +1,26 @@
-from typing import Any, Dict, List, Optional
+from http import HTTPStatus
+from typing import Any, Dict, List, Optional, Union
 
 import httpx
 
-from ...client import Client
+from ... import errors
+from ...client import AuthenticatedClient, Client
 from ...models.job import Job
 from ...types import Response
 
 
-def _get_kwargs(
-    *,
-    client: Client,
-) -> Dict[str, Any]:
-    url = "{}/user/job".format(client.base_url)
+def _get_kwargs() -> Dict[str, Any]:
 
-    headers: Dict[str, Any] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     return {
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "method": "get",
+        "url": "/user/job",
     }
 
 
-def _parse_response(*, response: httpx.Response) -> Optional[List[Job]]:
-    if response.status_code == 200:
+def _parse_response(*, client: Union[AuthenticatedClient, Client], response: httpx.Response) -> Optional[List["Job"]]:
+    if response.status_code == HTTPStatus.OK:
         response_200 = []
         _response_200 = response.json()
         for response_200_item_data in _response_200:
@@ -34,39 +29,61 @@ def _parse_response(*, response: httpx.Response) -> Optional[List[Job]]:
             response_200.append(response_200_item)
 
         return response_200
-    return None
+    if client.raise_on_unexpected_status:
+        raise errors.UnexpectedStatus(response.status_code, response.content)
+    else:
+        return None
 
 
-def _build_response(*, response: httpx.Response) -> Response[List[Job]]:
+def _build_response(*, client: Union[AuthenticatedClient, Client], response: httpx.Response) -> Response[List["Job"]]:
     return Response(
-        status_code=response.status_code,
+        status_code=HTTPStatus(response.status_code),
         content=response.content,
         headers=response.headers,
-        parsed=_parse_response(response=response),
+        parsed=_parse_response(client=client, response=response),
     )
 
 
 def sync_detailed(
     *,
-    client: Client,
-) -> Response[List[Job]]:
-    kwargs = _get_kwargs(
-        client=client,
-    )
+    client: Union[AuthenticatedClient, Client],
+) -> Response[List["Job"]]:
+    """List all jobs
 
-    response = httpx.get(
-        verify=client.verify_ssl,
+     Returns a list of job objects
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[List['Job']]
+    """
+
+    kwargs = _get_kwargs()
+
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
-    return _build_response(response=response)
+    return _build_response(client=client, response=response)
 
 
 def sync(
     *,
-    client: Client,
-) -> Optional[List[Job]]:
-    """Returns a list of job objects"""
+    client: Union[AuthenticatedClient, Client],
+) -> Optional[List["Job"]]:
+    """List all jobs
+
+     Returns a list of job objects
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        List['Job']
+    """
 
     return sync_detailed(
         client=client,
@@ -75,23 +92,42 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Client,
-) -> Response[List[Job]]:
-    kwargs = _get_kwargs(
-        client=client,
-    )
+    client: Union[AuthenticatedClient, Client],
+) -> Response[List["Job"]]:
+    """List all jobs
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.get(**kwargs)
+     Returns a list of job objects
 
-    return _build_response(response=response)
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        Response[List['Job']]
+    """
+
+    kwargs = _get_kwargs()
+
+    response = await client.get_async_httpx_client().request(**kwargs)
+
+    return _build_response(client=client, response=response)
 
 
 async def asyncio(
     *,
-    client: Client,
-) -> Optional[List[Job]]:
-    """Returns a list of job objects"""
+    client: Union[AuthenticatedClient, Client],
+) -> Optional[List["Job"]]:
+    """List all jobs
+
+     Returns a list of job objects
+
+    Raises:
+        errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
+        httpx.TimeoutException: If the request takes longer than Client.timeout.
+
+    Returns:
+        List['Job']
+    """
 
     return (
         await asyncio_detailed(

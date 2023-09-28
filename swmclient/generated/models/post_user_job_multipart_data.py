@@ -1,19 +1,23 @@
 from io import BytesIO
 from typing import Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
 
 from ..types import UNSET, File, FileJsonType, Unset
 
 T = TypeVar("T", bound="PostUserJobMultipartData")
 
 
-@attr.s(auto_attribs=True)
+@_attrs_define
 class PostUserJobMultipartData:
-    """ """
+    """
+    Attributes:
+        script_content (Union[Unset, File]):
+    """
 
     script_content: Union[Unset, File] = UNSET
-    additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         script_content: Union[Unset, FileJsonType] = UNSET
@@ -34,7 +38,9 @@ class PostUserJobMultipartData:
             script_content = self.script_content.to_tuple()
 
         field_dict: Dict[str, Any] = {}
-        field_dict.update({key: (None, str(value), "text/plain") for key, value in self.additional_properties.items()})
+        field_dict.update(
+            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
+        )
         field_dict.update({})
         if script_content is not UNSET:
             field_dict["script_content"] = script_content

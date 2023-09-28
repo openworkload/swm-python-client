@@ -36,8 +36,7 @@ as an example).
 sudo apt-get install python3-all-dev
 sudo apt install python3-pip
 
-pip3 install pip-tools
-pip3 install virtualenv
+pip3 install pip-tools setuptools virtualenv
 ```
 
 Note: python >= 3.9 is required.

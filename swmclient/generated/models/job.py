@@ -1,17 +1,40 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
 
-import attr
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
 
 from ..models.job_state import JobState
-from ..models.resource import Resource
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.resource import Resource
+
 
 T = TypeVar("T", bound="Job")
 
 
-@attr.s(auto_attribs=True)
+@_attrs_define
 class Job:
-    """A job information that is known to Sky Port"""
+    """A job information that is known to Sky Port
+
+    Attributes:
+        id (Union[Unset, str]): Job ID
+        name (Union[Unset, str]): Job name
+        state (Union[Unset, JobState]): Current job state
+        submit_time (Union[Unset, str]): Job submit time
+        start_time (Union[Unset, str]): Job start time
+        end_time (Union[Unset, str]): Job end time
+        duration (Union[Unset, int]): Job run time
+        exitcode (Union[Unset, int]): Job exit code
+        signal (Union[Unset, int]): Signal if job is terminated with a signal
+        node_names (Union[Unset, List[str]]): List of hostnames of nodes allocated for job
+        node_ips (Union[Unset, List[str]]): List of node IP addresses allocated for job
+        remote_id (Union[Unset, str]): Remote site ID
+        flavor_id (Union[Unset, str]): Node flavor ID
+        request (Union[Unset, List['Resource']]): List of resources that are requested by job
+        resources (Union[Unset, List['Resource']]): List of resources that are actually allocated for job
+        comment (Union[Unset, str]): A comment associated with job
+    """
 
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
@@ -26,10 +49,10 @@ class Job:
     node_ips: Union[Unset, List[str]] = UNSET
     remote_id: Union[Unset, str] = UNSET
     flavor_id: Union[Unset, str] = UNSET
-    request: Union[Unset, List[Resource]] = UNSET
-    resources: Union[Unset, List[Resource]] = UNSET
+    request: Union[Unset, List["Resource"]] = UNSET
+    resources: Union[Unset, List["Resource"]] = UNSET
     comment: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -112,6 +135,8 @@ class Job:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.resource import Resource
+
         d = src_dict.copy()
         id = d.pop("id", UNSET)
 

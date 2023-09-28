@@ -3,9 +3,9 @@ bandit
 black
 ruff
 isort
-mypy
-setuptools
+mypy >= 0.981
 tqdm
 twine
 wheel
 httpx
+openapi-python-client

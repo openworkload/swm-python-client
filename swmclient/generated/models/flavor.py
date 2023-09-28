@@ -1,23 +1,35 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
 
-from ..models.resource import Resource
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.resource import Resource
+
 
 T = TypeVar("T", bound="Flavor")
 
 
-@attr.s(auto_attribs=True)
+@_attrs_define
 class Flavor:
-    """A flavor information that is known to Sky Port"""
+    """A flavor information that is known to Sky Port
+
+    Attributes:
+        id (Union[Unset, str]): Flavor ID
+        name (Union[Unset, str]): Flavor name
+        remote_id (Union[Unset, str]): Related remote object ID configured in swm-core
+        resources (Union[Unset, List['Resource']]): List of resources flavor provides
+        price (Union[Unset, float]): Price of a node of this flavor per hour
+    """
 
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
     remote_id: Union[Unset, str] = UNSET
-    resources: Union[Unset, List[Resource]] = UNSET
+    resources: Union[Unset, List["Resource"]] = UNSET
     price: Union[Unset, float] = UNSET
-    additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -51,6 +63,8 @@ class Flavor:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.resource import Resource
+
         d = src_dict.copy()
         id = d.pop("id", UNSET)
 

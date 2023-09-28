@@ -1,19 +1,34 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
 
-from ..models.node_role import NodeRole
 from ..models.node_state_alloc import NodeStateAlloc
 from ..models.node_state_power import NodeStatePower
-from ..models.resource import Resource
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.node_role import NodeRole
+    from ..models.resource import Resource
+
 
 T = TypeVar("T", bound="Node")
 
 
-@attr.s(auto_attribs=True)
+@_attrs_define
 class Node:
-    """A node information"""
+    """A node information
+
+    Attributes:
+        id (Union[Unset, str]): Node ID
+        name (Union[Unset, str]): Node name in Sky Port
+        host (Union[Unset, str]): Node system hostname
+        api_port (Union[Unset, int]):
+        state_power (Union[Unset, NodeStatePower]): Node power state
+        state_alloc (Union[Unset, NodeStateAlloc]): Node jobs allocation state
+        resources (Union[Unset, List['Resource']]): List of resources node provides
+        roles (Union[Unset, List['NodeRole']]): Roles assigned to node
+    """
 
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
@@ -21,9 +36,9 @@ class Node:
     api_port: Union[Unset, int] = UNSET
     state_power: Union[Unset, NodeStatePower] = UNSET
     state_alloc: Union[Unset, NodeStateAlloc] = UNSET
-    resources: Union[Unset, List[Resource]] = UNSET
-    roles: Union[Unset, List[NodeRole]] = UNSET
-    additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
+    resources: Union[Unset, List["Resource"]] = UNSET
+    roles: Union[Unset, List["NodeRole"]] = UNSET
+    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -78,6 +93,9 @@ class Node:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.node_role import NodeRole
+        from ..models.resource import Resource
+
         d = src_dict.copy()
         id = d.pop("id", UNSET)
 

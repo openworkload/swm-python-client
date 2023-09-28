@@ -37,6 +37,8 @@ package:
 .PHONY: clean
 clean:
 	rm -f ./dist/*.whl
+	rm -fr swmclient.egg-info/*
+	rm -fr build/*
 
 .PHONY: upload
 upload:
