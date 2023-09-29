@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 
 def get_version():
-    cmd = "git describe"
+    cmd = "git describe --tags"
     try:
         result = check_output(
             cmd.split(),

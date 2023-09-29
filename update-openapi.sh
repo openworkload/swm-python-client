@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 function print_help() {
     echo "Usage:"
     echo "  1) Update from remote OpenAPI template file"

@@ -10,8 +10,8 @@
 </p>
 
 
-Python bindings for swm-core user REST API
-============================================
+Python bindings for swm-core REST API
+======================================
 
 # Description
 
