@@ -6,7 +6,7 @@
     <a href="https://pypi.python.org/pypi/swmclient" alt="Package status">
         <img src="https://img.shields.io/pypi/status/swmclient.svg" /></a>
     <a href="https://github.com/openworkload/swm-python-client/blob/master/LICENSE" alt="License">
-        <img src="https://img.shields.io/pypi/l/swmclient.svg" /></a>
+        <img src="https://github.com/openworkload/swm-python-client/blob/master/LICENSE" /></a>
 </p>
 
 
