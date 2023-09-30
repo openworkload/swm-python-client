@@ -1,12 +1,16 @@
 <p align="center">
     <a href="https://pypi.python.org/pypi/swmclient" alt="Latest package version">
-        <img src="https://img.shields.io/pypi/v/swmclient.svg" /></a>
+        <img src="https://img.shields.io/pypi/v/swmclient.svg" />
+    </a>
     <a href="https://pypi.python.org/pypi/swmclient" alt="Python version">
-        <img src="https://img.shields.io/pypi/pyversions/swmclient.svg" /></a>
+        <img src="https://img.shields.io/pypi/pyversions/swmclient.svg" />
+    </a>
     <a href="https://pypi.python.org/pypi/swmclient" alt="Package status">
-        <img src="https://img.shields.io/pypi/status/swmclient.svg" /></a>
+        <img src="https://img.shields.io/pypi/status/swmclient.svg" />
+    </a>
     <a href="https://github.com/openworkload/swm-python-client/blob/master/LICENSE" alt="License">
-        <img src="https://github.com/openworkload/swm-python-client/blob/master/LICENSE" /></a>
+        <img src="https://img.shields.io/github/license/openworkload/swm-python-client" />
+    </a>
 </p>
 
 
