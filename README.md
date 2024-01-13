@@ -43,7 +43,7 @@ sudo apt install python3-pip
 pip3 install pip-tools setuptools virtualenv
 ```
 
-Note: python >= 3.9 is required.
+Note: python >= 3.10 is required.
 
 2) Install the project dependencies with virtualenv
 ```bash

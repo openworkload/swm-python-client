@@ -39,7 +39,7 @@ setup(
     license="BSD",
     include_package_data=True,
     install_requires=["httpx"],
-    python_requires=">=3.9, <4",
+    python_requires=">=3.10, <4",
     platforms="Linux, Mac OS X, Windows",
     keywords=[
         "HPC",
@@ -53,7 +53,6 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
     ],
