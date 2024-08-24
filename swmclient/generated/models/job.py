@@ -1,7 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+import attr
 
 from ..models.job_state import JobState
 from ..types import UNSET, Unset
@@ -13,7 +12,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="Job")
 
 
-@_attrs_define
+@attr.s(auto_attribs=True)
 class Job:
     """A job information that is known to Sky Port
 
@@ -21,6 +20,7 @@ class Job:
         id (Union[Unset, str]): Job ID
         name (Union[Unset, str]): Job name
         state (Union[Unset, JobState]): Current job state
+        state_details (Union[Unset, str]): Job state details
         submit_time (Union[Unset, str]): Job submit time
         start_time (Union[Unset, str]): Job start time
         end_time (Union[Unset, str]): Job end time
@@ -39,6 +39,7 @@ class Job:
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
     state: Union[Unset, JobState] = UNSET
+    state_details: Union[Unset, str] = UNSET
     submit_time: Union[Unset, str] = UNSET
     start_time: Union[Unset, str] = UNSET
     end_time: Union[Unset, str] = UNSET
@@ -52,7 +53,7 @@ class Job:
     request: Union[Unset, List["Resource"]] = UNSET
     resources: Union[Unset, List["Resource"]] = UNSET
     comment: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -61,6 +62,7 @@ class Job:
         if not isinstance(self.state, Unset):
             state = self.state.value
 
+        state_details = self.state_details
         submit_time = self.submit_time
         start_time = self.start_time
         end_time = self.end_time
@@ -104,6 +106,8 @@ class Job:
             field_dict["name"] = name
         if state is not UNSET:
             field_dict["state"] = state
+        if state_details is not UNSET:
+            field_dict["state_details"] = state_details
         if submit_time is not UNSET:
             field_dict["submit_time"] = submit_time
         if start_time is not UNSET:
@@ -149,6 +153,8 @@ class Job:
         else:
             state = JobState(_state)
 
+        state_details = d.pop("state_details", UNSET)
+
         submit_time = d.pop("submit_time", UNSET)
 
         start_time = d.pop("start_time", UNSET)
@@ -189,6 +195,7 @@ class Job:
             id=id,
             name=name,
             state=state,
+            state_details=state_details,
             submit_time=submit_time,
             start_time=start_time,
             end_time=end_time,

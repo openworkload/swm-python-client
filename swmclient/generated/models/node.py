@@ -1,7 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-from attrs import define as _attrs_define
-from attrs import field as _attrs_field
+import attr
 
 from ..models.node_state_alloc import NodeStateAlloc
 from ..models.node_state_power import NodeStatePower
@@ -15,7 +14,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="Node")
 
 
-@_attrs_define
+@attr.s(auto_attribs=True)
 class Node:
     """A node information
 
@@ -38,7 +37,7 @@ class Node:
     state_alloc: Union[Unset, NodeStateAlloc] = UNSET
     resources: Union[Unset, List["Resource"]] = UNSET
     roles: Union[Unset, List["NodeRole"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id

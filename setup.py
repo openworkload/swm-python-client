@@ -40,7 +40,7 @@ setup(
     include_package_data=True,
     install_requires=["httpx"],
     python_requires=">=3.10, <4",
-    platforms="Linux, Mac OS X, Windows",
+    platforms="Linux",
     keywords=[
         "HPC",
         "High Performance Computing",

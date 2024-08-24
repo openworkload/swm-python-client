@@ -1,11 +1,12 @@
-PYTHON=python3
+PYTHON=python3.10
 VENV_BIN=.venv/bin
 
 RUNTEST=$(PYTHON) -m unittest -v -b
 ALLMODULES=$(patsubst %.py, %.py, $(wildcard test*.py))
 
-generate:
-	./update-openapi.sh
+update-api-local:
+	. .venv/bin/activate
+	./update-openapi.sh -l
 
 .PHONY: prepare-venv
 .ONESHELL:
@@ -44,13 +45,6 @@ clean:
 upload:
 	. .venv/bin/activate
 	$(PYTHON) -m twine upload --verbose --config-file .pypirc dist/*
-
-.PHONY: test
-test:
-	${RUNTEST} ${ALLMODULES}
-
-% : test%.py
-	${RUNTEST} test$@
 
 .PHONY: requirements
 requirements: requirements.txt

@@ -1,12 +1,12 @@
 """ Contains some shared types for properties """
 from http import HTTPStatus
-from typing import BinaryIO, Generic, Literal, MutableMapping, Optional, Tuple, TypeVar
+from typing import BinaryIO, Generic, MutableMapping, Optional, Tuple, TypeVar
 
-from attrs import define
+import attr
 
 
 class Unset:
-    def __bool__(self) -> Literal[False]:
+    def __bool__(self) -> bool:
         return False
 
 
@@ -15,7 +15,7 @@ UNSET: Unset = Unset()
 FileJsonType = Tuple[Optional[str], BinaryIO, Optional[str]]
 
 
-@define
+@attr.s(auto_attribs=True)
 class File:
     """Contains information for file uploads"""
 
@@ -31,7 +31,7 @@ class File:
 T = TypeVar("T")
 
 
-@define
+@attr.s(auto_attribs=True)
 class Response(Generic[T]):
     """A response from an endpoint"""
 
