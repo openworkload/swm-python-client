@@ -4,9 +4,9 @@ from typing import Any, Dict, List, Optional
 import httpx
 
 from ... import errors
+from ...types import Response
 from ...client import Client
 from ...models.flavor import Flavor
-from ...types import Response
 
 
 def _get_kwargs(

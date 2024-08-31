@@ -1,27 +1,27 @@
 """Contains end user interface to make SWM API queries"""
 
 from io import BytesIO
-from typing import Any, Optional, Union
+from typing import Any, Union, Optional
 
 from .connection import SwmConnection
+from .generated.types import File
+from .generated.models.job import Job
 from .generated.api.default import (
-    delete_user_job_job_id,
-    get_user_flavor,
     get_user_job,
+    get_user_node,
+    post_user_job,
+    get_user_flavor,
+    get_user_remote,
     get_user_job_job_id,
+    patch_user_job_job_id,
+    delete_user_job_job_id,
     get_user_job_job_id_stderr,
     get_user_job_job_id_stdout,
-    get_user_node,
-    get_user_remote,
-    patch_user_job_job_id,
-    post_user_job,
 )
-from .generated.models.flavor import Flavor
-from .generated.models.job import Job
 from .generated.models.node import Node
-from .generated.models.post_user_job_multipart_data import PostUserJobMultipartData
+from .generated.models.flavor import Flavor
 from .generated.models.remote_site import RemoteSite
-from .generated.types import File
+from .generated.models.post_user_job_multipart_data import PostUserJobMultipartData
 
 
 class SwmApi:

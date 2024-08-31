@@ -1,12 +1,12 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union, cast
+from typing import Any, Dict, Union, Optional, cast
 
 import httpx
 
 from ... import errors
+from ...types import Response
 from ...client import Client
 from ...models.job import Job
-from ...types import Response
 
 
 def _get_kwargs(

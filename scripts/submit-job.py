@@ -2,8 +2,8 @@
 
 import io
 import os
-import platform
 import sys
+import platform
 
 # For development purpose we need to use swmclient from the sources:
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))

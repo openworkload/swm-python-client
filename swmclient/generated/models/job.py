@@ -1,9 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, List, Type, Union, TypeVar, cast
 
 import attr
 
-from ..models.job_state import JobState
 from ..types import UNSET, Unset
+from ..models.job_state import JobState
 
 if TYPE_CHECKING:
     from ..models.resource import Resource

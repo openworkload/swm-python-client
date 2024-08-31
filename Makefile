@@ -33,13 +33,13 @@ check:
 .PHONY: package
 package:
 	. .venv/bin/activate
-	$(PYTHON) setup.py bdist_wheel
+	$(PYTHON) -m build
 
 .PHONY: clean
 clean:
-	rm -f ./dist/*.whl
-	rm -fr swmclient.egg-info/*
-	rm -fr build/*
+	rm -fr ./dist
+	rm -fr swmclient.egg-info
+	rm -fr build
 
 .PHONY: upload
 upload:

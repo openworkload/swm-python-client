@@ -1,13 +1,13 @@
-from http import HTTPStatus
 from io import BytesIO
-from typing import Any, Dict, Optional, Union, cast
+from http import HTTPStatus
+from typing import Any, Dict, Union, Optional, cast
 
 import httpx
 
 from ... import errors
+from ...types import File, Response
 from ...client import Client
 from ...models.post_user_job_multipart_data import PostUserJobMultipartData
-from ...types import File, Response
 
 
 def _get_kwargs(

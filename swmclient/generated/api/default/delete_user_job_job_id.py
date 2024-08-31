@@ -4,8 +4,8 @@ from typing import Any, Dict, Optional
 import httpx
 
 from ... import errors
-from ...client import Client
 from ...types import Response
+from ...client import Client
 
 
 def _get_kwargs(

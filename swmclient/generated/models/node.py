@@ -1,14 +1,14 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, Union, TypeVar
 
 import attr
 
+from ..types import UNSET, Unset
 from ..models.node_state_alloc import NodeStateAlloc
 from ..models.node_state_power import NodeStatePower
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.node_role import NodeRole
     from ..models.resource import Resource
+    from ..models.node_role import NodeRole
 
 
 T = TypeVar("T", bound="Node")
@@ -92,8 +92,8 @@ class Node:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.node_role import NodeRole
         from ..models.resource import Resource
+        from ..models.node_role import NodeRole
 
         d = src_dict.copy()
         id = d.pop("id", UNSET)

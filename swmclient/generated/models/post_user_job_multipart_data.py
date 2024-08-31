@@ -1,9 +1,9 @@
 from io import BytesIO
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, Union, TypeVar
 
 import attr
 
-from ..types import UNSET, File, FileJsonType, Unset
+from ..types import UNSET, File, Unset, FileJsonType
 
 T = TypeVar("T", bound="PostUserJobMultipartData")
 
