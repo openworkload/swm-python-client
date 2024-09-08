@@ -154,9 +154,7 @@ tomli==1.2.2
     #   black
     #   mypy
 tqdm==4.62.3
-    # via
-    #   -r requirements.in
-    #   twine
+    # via twine
 twine==3.6.0
     # via -r requirements.in
 typer==0.7.0
