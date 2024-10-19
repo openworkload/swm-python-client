@@ -2,6 +2,7 @@
 
 from .job import Job
 from .node import Node
+from .image import Image
 from .flavor import Flavor
 from .resource import Resource
 from .job_state import JobState
@@ -13,6 +14,7 @@ from .post_user_job_multipart_data import PostUserJobMultipartData
 
 __all__ = (
     "Flavor",
+    "Image",
     "Job",
     "JobState",
     "Node",
