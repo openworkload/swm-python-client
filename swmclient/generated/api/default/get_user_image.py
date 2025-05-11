@@ -77,6 +77,7 @@ def sync_detailed(
         verify=client.verify_ssl,
         **kwargs,
     )
+
     return _build_response(client=client, response=response)
 
 

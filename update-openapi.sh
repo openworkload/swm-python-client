@@ -44,4 +44,5 @@ else
   URL_ARG="--url https://raw.githubusercontent.com/openworkload/swm-core/${GIT_BRANCH}/priv/openapi.yaml"
 fi
 
-python3 $HOME/.local/bin/openapi-python-client update ${URL_ARG} --config $CONFIG --fail-on-warning
+#pip install openapi-python-client
+openapi-python-client update ${URL_ARG} --config $CONFIG --fail-on-warning
