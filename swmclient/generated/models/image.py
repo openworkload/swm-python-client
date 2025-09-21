@@ -14,12 +14,14 @@ class Image:
     Attributes:
         id (Union[Unset, str]): Image ID
         name (Union[Unset, str]): Image name
+        remote_id (Union[Unset, str]): Related remote object ID configured in swm-core
         kind (Union[Unset, str]): Image kind
         comment (Union[Unset, str]): Image comment
     """
 
     id: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
+    remote_id: Union[Unset, str] = UNSET
     kind: Union[Unset, str] = UNSET
     comment: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
@@ -27,6 +29,7 @@ class Image:
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
         name = self.name
+        remote_id = self.remote_id
         kind = self.kind
         comment = self.comment
 
@@ -37,6 +40,8 @@ class Image:
             field_dict["id"] = id
         if name is not UNSET:
             field_dict["name"] = name
+        if remote_id is not UNSET:
+            field_dict["remote_id"] = remote_id
         if kind is not UNSET:
             field_dict["kind"] = kind
         if comment is not UNSET:
@@ -51,6 +56,8 @@ class Image:
 
         name = d.pop("name", UNSET)
 
+        remote_id = d.pop("remote_id", UNSET)
+
         kind = d.pop("kind", UNSET)
 
         comment = d.pop("comment", UNSET)
@@ -58,6 +65,7 @@ class Image:
         image = cls(
             id=id,
             name=name,
+            remote_id=remote_id,
             kind=kind,
             comment=comment,
         )
