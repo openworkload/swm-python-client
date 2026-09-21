@@ -82,6 +82,23 @@ class SwmApi:
             return response.content
         return None
 
+    def purge_jobs(self) -> Optional[bytes]:
+        """Permanently remove all jobs for the authenticated user."""
+        if client := self._conn.get_auth_client():
+            import httpx
+
+            response = httpx.request(
+                "DELETE",
+                f"{client.base_url}/user/job",
+                headers=client.get_headers(),
+                cookies=client.get_cookies(),
+                timeout=max(client.get_timeout(), 300.0),
+                follow_redirects=client.follow_redirects,
+                verify=client.verify_ssl,
+            )
+            return response.content
+        return None
+
     def requeue_job(self, job_id: str) -> Optional[bytes]:
         if client := self._conn.get_auth_client():
             response = patch_user_job_job_id.sync_detailed(job_id=job_id, client=client, modification="requeue")
@@ -91,5 +108,10 @@ class SwmApi:
     def submit_job(self, script_bytes: BytesIO) -> Optional[File]:
         if client := self._conn.get_auth_client():
             data = PostUserJobMultipartData(script_content=File(payload=script_bytes))
-            return post_user_job.sync(client=client, multipart_data=data)
+            # Job submit can exceed the generated client's 5s default when SkyPort
+            # is busy (Mnesia/topology); the job may still be accepted server-side.
+            return post_user_job.sync(
+                client=client.with_timeout(max(client.get_timeout(), 120.0)),
+                multipart_data=data,
+            )
         return None
