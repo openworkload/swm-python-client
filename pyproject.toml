@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-    "setuptools==75.6.0",
-    "setuptools-git-versioning>=2.0,<3",
+    "setuptools==84.0.0",
+    "setuptools-git-versioning>=2.0,<4",
     "wheel",
 ]
 build-backend = "setuptools.build_meta"
@@ -26,10 +26,10 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
 ]
-requires-python = "~=3.10"
+requires-python = "~=3.12"
 dependencies = [
     "httpx",
 ]
@@ -46,10 +46,10 @@ Distribution = "https://pypi.org/project/swmclient"
 
 [project.optional-dependencies]
 build = [
-    "build==1.2.1"
+    "build==1.6.1"
 ]
 publish = [
-    "twine==5.1.1"
+    "twine==7.0.0"
 ]
 test = [
     "pytest",
@@ -74,7 +74,7 @@ readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.black]
 line-length = 120
-target-version = ['py310']
+target-version = ['py312']
 exclude = '''
 (
   /(
@@ -108,7 +108,7 @@ skip_glob = [".venv/*", ".github/workflows/*"]
 length_sort = true
 
 [tool.mypy]
-python_version = 3.10
+python_version = 3.12
 strict = true
 follow_imports = "silent"
 
@@ -120,3 +120,8 @@ allow_untyped_calls = true
 
 [tool.bandit]
 skips = []
+
+[tool.ruff.lint]
+# Match historical flake8-oriented checks under ruff 0.16+ defaults.
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]

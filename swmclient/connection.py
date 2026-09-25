@@ -1,8 +1,8 @@
 """Contains class required to establish connections over SwmQuery"""
 
-import ssl
 import pathlib
-from typing import Any, Dict, Union, Optional
+import ssl
+from typing import Any, Dict, Optional, Union
 
 from .generated.client import AuthenticatedClient
 

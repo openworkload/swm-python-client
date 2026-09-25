@@ -1,4 +1,4 @@
-PYTHON=python3.10
+PYTHON=python3.12
 VENV_BIN=.venv/bin
 
 RUNTEST=$(PYTHON) -m unittest -v -b
@@ -26,7 +26,7 @@ format:
 .PHONY: check
 check:
 	. .venv/bin/activate
-	$(VENV_BIN)/ruff swmclient
+	$(VENV_BIN)/ruff check swmclient
 	$(VENV_BIN)/mypy swmclient
 	$(VENV_BIN)/bandit -r swmclient -c "pyproject.toml" --silent
 
