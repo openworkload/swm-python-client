@@ -83,7 +83,11 @@ class SwmApi:
         return None
 
     def purge_jobs(self) -> Optional[bytes]:
-        """Permanently remove all jobs for the authenticated user."""
+        """Permanently remove non-running jobs for the authenticated user.
+
+        Queued, waiting, finished, canceled, error, and transferring jobs are
+        purged. Running jobs are left untouched.
+        """
         if client := self._conn.get_auth_client():
             import httpx
 
