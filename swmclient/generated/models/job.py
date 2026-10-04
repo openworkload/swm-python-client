@@ -34,6 +34,11 @@ class Job:
         request (Union[Unset, List['Resource']]): List of resources that are requested by job
         resources (Union[Unset, List['Resource']]): List of resources that are actually allocated for job
         comment (Union[Unset, str]): A comment associated with job
+        checkpoint (Union[Unset, str]): Checkpoint engine (dmtcp) when enabled; empty when disabled
+        checkpoint_dir (Union[Unset, str]): Directory for DMTCP/MANA checkpoint images
+        checkpoint_interval (Union[Unset, int]): Periodic checkpoint interval in seconds (0 = cancel-only)
+        last_checkpoint_time (Union[Unset, str]): ISO-8601 time of the last successful checkpoint
+        checkpoint_display (Union[Unset, str]): Console display -- last time, empty, or disabled
     """
 
     id: Union[Unset, str] = UNSET
@@ -53,6 +58,11 @@ class Job:
     request: Union[Unset, List["Resource"]] = UNSET
     resources: Union[Unset, List["Resource"]] = UNSET
     comment: Union[Unset, str] = UNSET
+    checkpoint: Union[Unset, str] = UNSET
+    checkpoint_dir: Union[Unset, str] = UNSET
+    checkpoint_interval: Union[Unset, int] = UNSET
+    last_checkpoint_time: Union[Unset, str] = UNSET
+    checkpoint_display: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -96,6 +106,11 @@ class Job:
                 resources.append(resources_item)
 
         comment = self.comment
+        checkpoint = self.checkpoint
+        checkpoint_dir = self.checkpoint_dir
+        checkpoint_interval = self.checkpoint_interval
+        last_checkpoint_time = self.last_checkpoint_time
+        checkpoint_display = self.checkpoint_display
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -134,6 +149,16 @@ class Job:
             field_dict["resources"] = resources
         if comment is not UNSET:
             field_dict["comment"] = comment
+        if checkpoint is not UNSET:
+            field_dict["checkpoint"] = checkpoint
+        if checkpoint_dir is not UNSET:
+            field_dict["checkpoint_dir"] = checkpoint_dir
+        if checkpoint_interval is not UNSET:
+            field_dict["checkpoint_interval"] = checkpoint_interval
+        if last_checkpoint_time is not UNSET:
+            field_dict["last_checkpoint_time"] = last_checkpoint_time
+        if checkpoint_display is not UNSET:
+            field_dict["checkpoint_display"] = checkpoint_display
 
         return field_dict
 
@@ -191,6 +216,16 @@ class Job:
 
         comment = d.pop("comment", UNSET)
 
+        checkpoint = d.pop("checkpoint", UNSET)
+
+        checkpoint_dir = d.pop("checkpoint_dir", UNSET)
+
+        checkpoint_interval = d.pop("checkpoint_interval", UNSET)
+
+        last_checkpoint_time = d.pop("last_checkpoint_time", UNSET)
+
+        checkpoint_display = d.pop("checkpoint_display", UNSET)
+
         job = cls(
             id=id,
             name=name,
@@ -209,6 +244,11 @@ class Job:
             request=request,
             resources=resources,
             comment=comment,
+            checkpoint=checkpoint,
+            checkpoint_dir=checkpoint_dir,
+            checkpoint_interval=checkpoint_interval,
+            last_checkpoint_time=last_checkpoint_time,
+            checkpoint_display=checkpoint_display,
         )
 
         job.additional_properties = d
