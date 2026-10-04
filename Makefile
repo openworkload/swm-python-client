@@ -1,9 +1,6 @@
 PYTHON=python3.12
 VENV_BIN=.venv/bin
 
-RUNTEST=$(PYTHON) -m unittest -v -b
-ALLMODULES=$(patsubst %.py, %.py, $(wildcard test*.py))
-
 update-api-local:
 	. .venv/bin/activate
 	./update-openapi.sh -l
@@ -13,8 +10,12 @@ update-api-local:
 prepare-venv: .SHELLFLAGS := -euo pipefail -c
 prepare-venv: SHELL := bash
 prepare-venv:
-	virtualenv --system-site-packages .venv
+	# Isolated venv (no --system-site-packages): system packages can register
+	# broken pytest entry points (e.g. platformdirs) under act/GHA.
+	$(PYTHON) -m venv --clear .venv
+	$(VENV_BIN)/python -m pip install --upgrade pip
 	$(VENV_BIN)/pip install --ignore-installed --no-deps -r requirements.txt
+	$(VENV_BIN)/pip install -e ".[test]"
 
 .PHONY: format
 format:
@@ -29,6 +30,16 @@ check:
 	$(VENV_BIN)/ruff check swmclient
 	$(VENV_BIN)/mypy swmclient
 	$(VENV_BIN)/bandit -r swmclient -c "pyproject.toml" --silent
+
+.PHONY: test
+test:
+	. .venv/bin/activate
+	$(VENV_BIN)/python -m pytest -q tests
+
+.PHONY: act
+act:
+	scripts/run-act.sh $(ARGS)
+
 
 .PHONY: package
 package:

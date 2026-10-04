@@ -40,7 +40,7 @@ dynamic = ["version", "readme"]
 Homepage = "https://openworkload.org"
 Documentation = "https://openworkload.org"
 Repository = "https://github.com/openworkload/swm-python-client"
-Tests = "https://github.com/openworkload/swm-python-client/tree/master/test"
+Tests = "https://github.com/openworkload/swm-python-client/tree/master/tests"
 Issues = "https://github.com/openworkload/swm-python-client/issues"
 Distribution = "https://pypi.org/project/swmclient"
 

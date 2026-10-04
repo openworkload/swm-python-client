@@ -11,6 +11,9 @@
     <a href="https://github.com/openworkload/swm-python-client/blob/master/LICENSE" alt="License">
         <img src="https://img.shields.io/github/license/openworkload/swm-python-client" />
     </a>
+    <a href="https://github.com/openworkload/swm-python-client/actions/workflows/ci.yml" alt="Latest CI tests result">
+        <img src="https://github.com/openworkload/swm-python-client/actions/workflows/ci.yml/badge.svg?event=push" />
+    </a>
 </p>
 
 
@@ -40,12 +43,12 @@ as an example).
 sudo apt-get install python3-all-dev
 sudo apt install python3-pip
 
-pip3 install pip-tools setuptools virtualenv
+pip3 install pip-tools setuptools
 ```
 
 Note: Python 3.12 is required.
 
-2) Install the project dependencies with virtualenv
+2) Install the project dependencies into a local virtualenv:
 ```bash
 make prepare-venv
 ```
@@ -60,6 +63,15 @@ make check
 ```bash
 make test
 ```
+
+## Run GitHub Actions locally (act + Podman):
+```bash
+make act
+make act ARGS='--job unit_tests'
+make act ARGS='--job check --rm'
+```
+
+Requires `podman.socket` (or `podman system service`) and `act` on PATH.
 
 ## Build pip package and upload to pypi.org:
 
