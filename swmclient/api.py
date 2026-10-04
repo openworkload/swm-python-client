@@ -10,6 +10,7 @@ from .generated.api.default import (
     get_user_image,
     get_user_job,
     get_user_job_job_id,
+    get_user_job_job_id_metrics,
     get_user_job_job_id_stderr,
     get_user_job_job_id_stdout,
     get_user_node,
@@ -20,6 +21,7 @@ from .generated.api.default import (
 from .generated.models.flavor import Flavor
 from .generated.models.image import Image
 from .generated.models.job import Job
+from .generated.models.job_metrics import JobMetrics
 from .generated.models.node import Node
 from .generated.models.post_user_job_multipart_data import PostUserJobMultipartData
 from .generated.models.remote_site import RemoteSite
@@ -54,6 +56,14 @@ class SwmApi:
     def get_job(self, job_id: str) -> Optional[Union[Any, File]]:
         if client := self._conn.get_auth_client():
             return get_user_job_job_id.sync(job_id=job_id, client=client)
+        return None
+
+    def get_job_metrics(self, job_id: str) -> Optional[JobMetrics]:
+        """Return avg/max CPU, memory, and GPU metrics for a job from Prometheus."""
+        if client := self._conn.get_auth_client():
+            result = get_user_job_job_id_metrics.sync(job_id=job_id, client=client)
+            if isinstance(result, JobMetrics):
+                return result
         return None
 
     def get_flavors(self) -> Optional[list[Flavor]]:

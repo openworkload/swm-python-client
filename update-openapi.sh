@@ -44,5 +44,8 @@ else
   URL_ARG="--url https://raw.githubusercontent.com/openworkload/swm-core/${GIT_BRANCH}/priv/openapi.yaml"
 fi
 
-#pip install openapi-python-client
-openapi-python-client update ${URL_ARG} --config $CONFIG --fail-on-warning
+# openapi-python-client >=0.26 dropped `update`. Generate overwrites swmclient/generated.
+# Note: 0.29+ output shape differs from the hand-maintained client wrappers in
+# swmclient/api.py / connection.py -- review those after a full regen.
+openapi-python-client generate ${URL_ARG} --config "$CONFIG" --meta none \
+  --overwrite --output-path "${SCRIPT_DIR}/swmclient/generated" --fail-on-warning
