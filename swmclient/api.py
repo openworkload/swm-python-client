@@ -1,5 +1,6 @@
 """Contains end user interface to make SWM API queries"""
 
+import os
 from io import BytesIO
 from typing import Any, Optional, Union
 
@@ -28,6 +29,16 @@ from .generated.models.remote_site import RemoteSite
 from .generated.types import File
 
 
+def resolve_key_password(password: Union[str, None] = None) -> Union[str, None]:
+    """Return an explicit password, else non-empty ``SWM_KEY_PASSWORD``, else None."""
+    if password is not None:
+        return password
+    env = os.environ.get("SWM_KEY_PASSWORD")
+    if env:
+        return env
+    return None
+
+
 class SwmApi:
     """Main class for all the API bindins."""
 
@@ -36,7 +47,7 @@ class SwmApi:
     ) -> None:
         self._conn = SwmConnection(url, key_file, cert_file, ca_file)
         headers = {"Accept": "application/json"}
-        self._conn.establish(headers, password)
+        self._conn.establish(headers, resolve_key_password(password))
 
     def get_jobs(self) -> Optional[list[Job]]:
         if client := self._conn.get_auth_client():

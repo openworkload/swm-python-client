@@ -26,10 +26,17 @@ class SwmConnection:
 
     def establish(self, headers: Dict[str, Any], password: Union[str, None] = None) -> None:
         if not self._client:
-            ssl_context: ssl.SSLContext = ssl.create_default_context()
+            # Trust only the cluster CA -- do not load the system public CA store.
+            ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
             ssl_context.verify_mode = ssl.CERT_REQUIRED
+            ssl_context.check_hostname = True
+            ssl_context.minimum_version = ssl.TLSVersion.TLSv1_2
             ssl_context.load_verify_locations(cafile=str(self._ca_file))
-            ssl_context.load_cert_chain(certfile=str(self._cert_file), keyfile=str(self._key_file), password=password)
+            ssl_context.load_cert_chain(
+                certfile=str(self._cert_file),
+                keyfile=str(self._key_file),
+                password=password,
+            )
             self._client = AuthenticatedClient(
                 base_url=self._url,
                 headers=headers,

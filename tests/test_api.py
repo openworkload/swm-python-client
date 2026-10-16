@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from swmclient.api import SwmApi
+from swmclient.api import SwmApi, resolve_key_password
 
 
 @pytest.fixture
@@ -16,6 +16,31 @@ def api_with_mock_conn() -> tuple[SwmApi, MagicMock]:
         conn.get_auth_client.return_value = None
         api = SwmApi("https://example:8443", "key.pem", "cert.pem", "ca.pem")
         return api, conn
+
+
+def test_resolve_key_password_prefers_explicit() -> None:
+    assert resolve_key_password("explicit") == "explicit"
+
+
+def test_resolve_key_password_uses_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("SWM_KEY_PASSWORD", "from-env")
+    assert resolve_key_password(None) == "from-env"
+
+
+def test_resolve_key_password_empty_env_is_none(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("SWM_KEY_PASSWORD", "")
+    assert resolve_key_password(None) is None
+
+
+def test_swmapi_passes_env_password_to_establish(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("SWM_KEY_PASSWORD", "env-secret")
+    with patch("swmclient.api.SwmConnection") as conn_cls:
+        conn = MagicMock()
+        conn_cls.return_value = conn
+        conn.get_auth_client.return_value = None
+        SwmApi("https://example:8443", "key.pem", "cert.pem", "ca.pem")
+        conn.establish.assert_called_once()
+        assert conn.establish.call_args.args[1] == "env-secret"
 
 
 def test_get_jobs_returns_none_without_client(api_with_mock_conn: tuple[SwmApi, MagicMock]) -> None:

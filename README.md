@@ -97,6 +97,24 @@ python3 -m pip install --user swmclient
 python3 -m pip uninstall swmclient
 ```
 
+# TLS / mTLS
+
+`SwmApi` / `SwmConnection` use mutual TLS against Sky Port. The SSL context
+trusts **only** the cluster CA file you pass as `ca_file`. It does not load the
+system public CA store.
+
+Typical paths:
+
+| Material | Path |
+|----------|------|
+| Client key | `~/.swm/key.pem` |
+| Client cert | `~/.swm/cert.pem` |
+| Cluster CA | `/opt/swm/spool/secure/cluster/ca-chain-cert.pem` (or your spool layout) |
+
+Prefer a passphrase-protected private key. Pass the passphrase to `SwmApi(..., password=...)`
+or set environment variable `SWM_KEY_PASSWORD`. Unencrypted keys still work when
+neither is set.
+
 
 # Contributing
 
