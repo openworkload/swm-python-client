@@ -1,11 +1,12 @@
 from http import HTTPStatus
 from typing import Any, Dict, Optional
+from urllib.parse import quote
 
 import httpx
 
 from ... import errors
-from ...types import Response
 from ...client import Client
+from ...types import Response
 
 
 def _get_kwargs(
@@ -13,7 +14,7 @@ def _get_kwargs(
     *,
     client: Client,
 ) -> Dict[str, Any]:
-    url = "{}/user/job/{jobId}".format(client.base_url, jobId=job_id)
+    url = "{}/user/job/{jobId}".format(client.base_url, jobId=quote(job_id, safe=""))
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
